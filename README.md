@@ -2,7 +2,10 @@
 
 A lightweight, accessible React component library and design system built with TypeScript and styled-components.
 
-[![CI](https://github.com/marharyta/margodiv-ui-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/marharyta/margodiv-ui-kit/actions/workflows/ci.yml)
+[![CI](https://github.com/margogediv/margodiv-ui-kit-master/actions/workflows/ci.yml/badge.svg)](https://github.com/margogediv/margodiv-ui-kit-master/actions/workflows/ci.yml)
+[![Storybook](https://img.shields.io/badge/Storybook-live-ff4785)](https://6a15d09a7a27f6b681439731-hyrlargfac.chromatic.com)
+
+**[Live Storybook →](https://6a15d09a7a27f6b681439731-hyrlargfac.chromatic.com)**
 
 ## Features
 

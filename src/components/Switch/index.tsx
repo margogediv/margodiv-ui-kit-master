@@ -2,7 +2,7 @@ import { FC } from "react";
 import { SwitchInput, SwitchLabel, SwitchWrapper } from "./styles";
 import { Loading } from "../../icons/Loading";
 
-export interface Props {
+export interface SwitchProps {
   uniqId?: string;
   labelFor?: string;
   defaultChecked?: boolean;
@@ -12,9 +12,10 @@ export interface Props {
   size: "default" | "small";
   label?: string;
   className?: string;
+  "aria-label"?: string;
 }
 
-export const Switch: FC<Props> = ({
+export const Switch: FC<SwitchProps> = ({
   checked,
   className,
   defaultChecked,
@@ -24,6 +25,7 @@ export const Switch: FC<Props> = ({
   labelFor = "switch",
   label,
   uniqId = "switch",
+  "aria-label": ariaLabel,
 }) => {
   return (
     <SwitchWrapper className={className}>
@@ -37,6 +39,7 @@ export const Switch: FC<Props> = ({
           id={uniqId}
           size={size}
           loading={loading}
+          aria-label={ariaLabel}
         />
         <SwitchLabel htmlFor={labelFor}>
           <div>

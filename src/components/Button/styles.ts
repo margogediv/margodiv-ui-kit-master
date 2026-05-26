@@ -244,7 +244,19 @@ const loadingStyle = css<StyledProps>`
 
 // ─── StyledButton ─────────────────────────────────────────────────────────────
 
-export const StyledButton = styled.button<StyledProps>`
+const CUSTOM_PROPS = new Set([
+  "btnType",
+  "btnSize",
+  "iconOnly",
+  "danger",
+  "ghost",
+  "loading",
+  "block",
+]);
+
+export const StyledButton = styled.button.withConfig({
+  shouldForwardProp: (prop) => !CUSTOM_PROPS.has(prop),
+})<StyledProps>`
   display: inline-flex;
   align-items: center;
   justify-content: center;

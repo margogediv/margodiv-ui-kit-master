@@ -1,4 +1,4 @@
-import { FC, useState, useCallback, MouseEvent } from "react";
+import { FC, useState, useCallback, MouseEvent, KeyboardEvent } from "react";
 import {
   RateWrapper,
   StarWrapper,
@@ -66,8 +66,19 @@ export const Rate: FC<RateProps> = ({
     [disabled, allowClear, cleanValue, isControlled, onChange]
   );
 
+  const handleKey =
+    (val: number) => (e: KeyboardEvent<HTMLSpanElement>) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        handleClick(val);
+      }
+    };
+
   return (
     <RateWrapper
+      role="radiogroup"
+      aria-label="Rating"
+      aria-disabled={disabled}
       className={className}
       disabled={disabled}
       onMouseLeave={handleMouseLeave}
@@ -80,20 +91,22 @@ export const Rate: FC<RateProps> = ({
 
         return (
           <StarWrapper key={idx} disabled={disabled}>
-            {/* Background star (always gray) */}
             <StarBackground>
               <Star color={EMPTY_COLOR} size={STAR_SIZE} />
             </StarBackground>
 
-            {/* Foreground star (yellow, clipped by width) */}
             <StarForeground width={foregroundWidth}>
               <Star color={FILL_COLOR} size={STAR_SIZE} />
             </StarForeground>
 
-            {/* Click / hover triggers */}
             {allowHalf ? (
               <>
                 <HalfTrigger
+                  role="radio"
+                  aria-label={`${idx - 0.5} stars`}
+                  aria-checked={isHalf}
+                  tabIndex={disabled ? -1 : 0}
+                  onKeyDown={handleKey(idx - 0.5)}
                   onMouseEnter={() => handleHover(idx - 0.5)}
                   onClick={(e: MouseEvent) => {
                     e.stopPropagation();
@@ -101,12 +114,22 @@ export const Rate: FC<RateProps> = ({
                   }}
                 />
                 <FullTrigger
+                  role="radio"
+                  aria-label={`${idx} stars`}
+                  aria-checked={isFull}
+                  tabIndex={disabled ? -1 : 0}
+                  onKeyDown={handleKey(idx)}
                   onMouseEnter={() => handleHover(idx)}
                   onClick={() => handleClick(idx)}
                 />
               </>
             ) : (
               <FullTrigger
+                role="radio"
+                aria-label={`${idx} stars`}
+                aria-checked={isFull}
+                tabIndex={disabled ? -1 : 0}
+                onKeyDown={handleKey(idx)}
                 onMouseEnter={() => handleHover(idx)}
                 onClick={() => handleClick(idx)}
               />

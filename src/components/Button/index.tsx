@@ -45,6 +45,7 @@ export const Button: FC<ButtonProps> = ({
       iconOnly={iconOnly}
       disabled={disabled || loading}
       className={className}
+      aria-busy={loading || undefined}
       {...rest}
     >
       {loading ? <Loading /> : icon}

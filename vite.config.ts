@@ -12,10 +12,11 @@ export default defineConfig({
       fileName: (format) => `margodiv-ui-kit.${format}.js`,
     },
     rollupOptions: {
-      external: ["react"],
+      external: ["react", "react-dom"],
       output: {
         globals: {
           react: "React",
+          "react-dom": "ReactDOM",
         },
       },
     },
@@ -24,6 +25,7 @@ export default defineConfig({
     react(),
     dts({
       insertTypesEntry: true,
+      exclude: ["src/test/**", "**/*.stories.*", "**/*.test.*"],
     }),
   ],
 });

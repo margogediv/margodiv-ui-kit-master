@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import variables from "../../variables";
-import { Props } from ".";
+import { SwitchProps } from ".";
 
 const rotate = keyframes`
   from {
@@ -21,15 +21,26 @@ export const SwitchWrapper = styled.div`
 export const SwitchInput = styled.input.attrs<{
   loading?: boolean;
   size: "default" | "small";
-}>((props: Props) => ({
+}>((props: SwitchProps) => ({
   size: props.size,
   loading: props.loading,
 }))`
   &[type="checkbox"] {
-    height: 0;
-    width: 0;
-    visibility: hidden;
     position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  &:focus-visible + label {
+    outline: 2px solid ${variables.colors.brand.primary.colorPrimary.light};
+    outline-offset: 2px;
+    border-radius: ${variables.size.radius.xxl}px;
   }
 
   ${(props) => {

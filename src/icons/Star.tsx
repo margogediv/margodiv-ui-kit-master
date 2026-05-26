@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-interface StarProps {
+export interface StarProps {
   color?: string;
   size?: number;
 }
